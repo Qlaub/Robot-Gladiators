@@ -7,10 +7,8 @@ let enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 let enemyHealth = 50;
 let enemyAttack = 12;
 
-// Alert players they're starting the game
-window.alert("Welcome to Robot Gladiators!");
-
 let fight = function(enemyName) {
+
   //fight for as long as enemy robot is alive
   while(enemyHealth > 0 && playerHealth > 0) {
     //Ask player if they want to fight
@@ -67,9 +65,25 @@ let fight = function(enemyName) {
 }
 
 for (let i = 0; i < enemyNames.length; i++) {
-  let pickedEnemyNames = enemyNames[i];
-  enemyHealth = 50;
-  fight(pickedEnemyNames);
+  if (playerHealth > 0) {
+    //alert player to round
+    window.alert(`Welcome to Robot Gladiators! Round ${i + 1}!`)
+
+    //pick enemy
+    let pickedEnemyNames = enemyNames[i];
+
+    //set enemy health
+    enemyHealth = 50;
+
+    //start fight function
+    fight(pickedEnemyNames);
+  }
+
+  else {
+    window.alert("You have lost your robot in battle! Game Over!");
+    break;
+  }
+
 }
 
 /*
