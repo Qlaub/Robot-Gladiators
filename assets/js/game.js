@@ -3,14 +3,14 @@ let playerHealth = 100
 let playerAttack = 10;
 let playerMoney = 10;
 
-let enemyName = "Roberto";
+let enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 let enemyHealth = 50;
 let enemyAttack = 12;
 
 // Alert players they're starting the game
 window.alert("Welcome to Robot Gladiators!");
 
-let fight = function() {
+let fight = function(enemyName) {
 
   //Ask player if they want to fight
   let promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
@@ -58,7 +58,9 @@ let fight = function() {
   }
 }
 
-fight();
+for (let i = 0; i < enemyNames.length; i++) {
+  fight(enemyNames[i])
+}
 
 /*
 let userRobot = {
