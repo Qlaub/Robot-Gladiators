@@ -7,6 +7,12 @@ let enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 let enemyHealth = 50;
 let enemyAttack = 12;
 
+//generate random integer
+let randomNumber = function(min, max) {
+  let value = Math.floor(Math.random() * (max - min + 1)) + min;
+  return value;
+}
+
 let fight = function(enemyName) {
 
   //fight for as long as enemy robot is alive
@@ -23,14 +29,18 @@ let fight = function(enemyName) {
       if (confirmSkip) {
         window.alert(playerName + " has decided to skip this fight. Goodbye!");
       // subtract money from playerMoney for skipping
-      playerMoney -= 10;
+      playerMoney = Math.max(0, playerMoney - 10);
       console.log("playerMoney", playerMoney)
       break;
       }
     }
 
+    //generate player attack value
+    var damage = randomNumber(playerAttack -3, playerAttack);
+    console.log("player damage", damage);
+
     // remove enemy's health by subtracting the amount set in the playerAttack variable
-    enemyHealth -= playerAttack;
+    enemyHealth = Math.max(0, enemyHealth - damage);
     console.log(
       playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
     );
@@ -46,8 +56,12 @@ let fight = function(enemyName) {
       window.alert(enemyName + " still has " + enemyHealth + " health left.");
     }
 
+    //generate computer attack value
+    var damage = randomNumber(enemyAttack - 3, enemyAttack);
+    console.log("enemy attack", damage);
+
     // remove player's health by subtracting the amount set in the enemyAttack variable
-    playerHealth = playerHealth - enemyAttack;
+    playerHealth = Math.max(0, playerHealth - damage);
     console.log(
       enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
     );
@@ -77,7 +91,7 @@ let startGame = function() {
       let pickedEnemyNames = enemyNames[i];
 
       //set enemy health
-      enemyHealth = 50;
+      enemyHealth = randomNumber(40, 60);
 
       //start fight function
       fight(pickedEnemyNames);
