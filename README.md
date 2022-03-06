@@ -1,6 +1,6 @@
 # [Robot-Gladiators](https://qlaub.github.io/Robot-Gladiators/)
 
-A simple in-browser JavaScript game that pits a player against a team of three robots intent on killing you!
+A simple in-browser text-based game made with JavaScript. Battle your way to a victory against a team of three robots intent on killing you!
 
 [Click here to play!](https://qlaub.github.io/Robot-Gladiators/)
 
