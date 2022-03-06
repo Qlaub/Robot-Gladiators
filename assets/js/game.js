@@ -196,12 +196,26 @@ let startGame = function() {
 }
 
 let endGame = function() {
-  // if player is still alive, player wins!
+
+  //victory if player still has health
   if (playerInfo.health > 0) {
-    window.alert(`Great job, you've survived the game! You now have a score of ${playerInfo.money}.`);
-  } 
-  else {
-    window.alert("You've lost your robot in battle.");
+    window.alert("The game has now ended. Let's see how you did!")
+
+    let playerScore = playerInfo.money;
+    let highScore = localStorage.getItem("highscore");
+
+    //check if a high score exists
+    highScore = highScore || 0;
+
+    //check if high score this run
+    if (playerScore > highScore) {
+      localStorage.setItem("highscore", playerScore);
+      localStorage.setItem("name", playerInfo.name);
+
+      window.alert(`${playerInfo.name} now has the high score of ${playerScore}!`)
+    } else {
+      window.alert(`${playerInfo.name} did not beat the high score of ${highScore}. Maybe next time!`)
+    }
   }
 
   //restart game?
