@@ -210,27 +210,24 @@ let shop = function() {
 
   //prompt for shop choice
   let shopOptionPrompt = window.prompt(
-    "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice."
+    "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one 1 for REFILL, 2 for UPGRADE, or 3 for LEAVE."
     );
+  shopOptionPrompt = parseInt(shopOptionPrompt);
 
   //action based on user choice, comparing to forced lowercase to avoid user error
-  switch(shopOptionPrompt.toLowerCase()) {
-    case "refill":
+  switch(shopOptionPrompt) {
+    case 1:
       playerInfo.refillHealth();
       break;
-
-    case "upgrade":
+    case 2:
       playerInfo.upgradeAttack()
       break;
-
-    case "leave":
+    case 3:
       window.alert("Leaving the store.");
-
       //leaving store
       break;
     default:
       window.alert("You did not pick a valid option. Try again.");
-
       //restart shop
       shop();
       break;
