@@ -63,6 +63,7 @@ let enemyInfo = [
 let fightOrSkip = function() {
   let promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.")
 
+  //player enters empty string or null
   if (!promptFight) {
     window.alert("You need to enter a valid answer! Please try again.")
     return fightOrSkip();
@@ -80,9 +81,18 @@ let fightOrSkip = function() {
       //subtract money for skipping
       playerInfo.money -= 10;
 
-      //enter shop
-      shop();
+      //player decided to skip
+      return true;
     }
+
+  //player decides to fight
+  } else if (promptFight.toLowerCase() === "fight") {
+    return false;
+
+  //player enters response
+  } else {
+    window.alert("You need to enter a valid answer! Please try again.")
+    return fightOrSkip();
   }
 }
 
@@ -91,8 +101,10 @@ let fight = function(enemy) {
   //fight for as long as enemy robot is alive
   while(enemy.health > 0 && playerInfo.health > 0) {
     
-    //user fights or skips
-    fightOrSkip();
+    //user skips or fights
+    if (fightOrSkip()) {
+      break;
+    }
 
     //generate player attack value
     var damage = randomNumber(playerInfo.attack -3, playerInfo.attack);
