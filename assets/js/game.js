@@ -11,8 +11,8 @@ let getPlayerName = function() {
     name = window.prompt("What is your robot's name?")
   }
 
-console.log(`Your robot's name is ${name}`);
-return name;
+  console.log(`Your robot's name is ${name}`);
+  return name;
 }
 
 let playerInfo = {
@@ -60,27 +60,39 @@ let enemyInfo = [
   }
 ]
 
+let fightOrSkip = function() {
+  let promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.")
+
+  if (!promptFight) {
+    window.alert("You need to enter a valid answer! Please try again.")
+    return fightOrSkip();
+  }
+
+  //if player picks "skip" confirm and stop loop
+  if (promptFight.toLowerCase() === "skip") {
+    //confirm skip
+    let confirmSkip = window.confirm("Are you sure you'd like to skip this opponent?");
+
+    //if yes, leave fight
+    if (confirmSkip) {
+      window.alert(`${playerInfo.name} has decided to skip this fight. Goodbye!`);
+
+      //subtract money for skipping
+      playerInfo.money -= 10;
+
+      //enter shop
+      shop();
+    }
+  }
+}
+
 let fight = function(enemy) {
 
   //fight for as long as enemy robot is alive
   while(enemy.health > 0 && playerInfo.health > 0) {
-    //Ask player if they want to fight
-    let promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
-
-    // if player choses to fight, then fight
-    if (promptFight.toLowerCase() === "skip") {
-      //confirm skip
-      let confirmSkip = window.confirm("Are you sure you'd like to quit this fight?");
-
-      // if true leave fight
-      if (confirmSkip) {
-        window.alert(playerInfo.name + " has decided to skip this fight. Goodbye!");
-      // subtract money from playerInfo.money for skipping
-      playerInfo.money = Math.max(0, playerInfo.money - 10);
-      console.log("playerInfo.money", playerInfo.money)
-      break;
-      }
-    }
+    
+    //user fights or skips
+    fightOrSkip();
 
     //generate player attack value
     var damage = randomNumber(playerInfo.attack -3, playerInfo.attack);
