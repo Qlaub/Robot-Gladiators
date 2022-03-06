@@ -16,3 +16,6 @@ A simple in-browser text-based game made with JavaScript. Battle your way to a v
 
 #### High scores
 - Become your own competition!
+
+---
+![Screenshot](/assets/images/screenshot.png)
